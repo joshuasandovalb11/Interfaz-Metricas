@@ -1,18 +1,26 @@
 from flask import Flask, render_template, request, jsonify
-import matplotlib.pyplot as plt
-import os
+from collections import deque
+import random
 
 app = Flask(__name__)
+
+# Almacenar un historial de métricas (últimos 10 valores)
+historial_metricas = {
+    "Tasa de defectos": deque(maxlen=10),
+    "Eficiencia de producción": deque(maxlen=10),
+    "Tiempo de fabricación": deque(maxlen=10),
+    "Desperdicio de material": deque(maxlen=10),
+    "Costos de operación": deque(maxlen=10)
+}
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Ruta para procesar datos y generar la gráfica
 @app.route("/calcular", methods=["POST"])
 def calcular():
     try:
-        # Obtener datos del formulario
+        # Obtener datos de los sliders
         productos_defectuosos = int(request.form["productos_defectuosos"])
         productos_totales = int(request.form["productos_totales"])
         productos_buenos = int(request.form["productos_buenos"])
@@ -28,28 +36,21 @@ def calcular():
         desp_material = (material_desperdiciado / material_total) * 100 if material_total > 0 else 0
         cost_oper = costos_totales / productos_totales if productos_totales > 0 else 0
 
-        # Crear la gráfica
-        labels = ["Tasa defectos", "Efic. producción", "Tiempo fabricación", "Desp. material", "Costos operación"]
-        values = [tasa_defec, efic_produc, tiempo_fabric, desp_material, cost_oper]
+        # Actualizar el historial de métricas
+        historial_metricas["Tasa de defectos"].append(tasa_defec)
+        historial_metricas["Eficiencia de producción"].append(efic_produc)
+        historial_metricas["Tiempo de fabricación"].append(tiempo_fabric)
+        historial_metricas["Desperdicio de material"].append(desp_material)
+        historial_metricas["Costos de operación"].append(cost_oper)
 
-        plt.figure(figsize=(12, 9))
-        plt.bar(labels, values, color=['blue', 'green', 'orange', 'yellow', 'red'])
-        plt.ylabel("Porcentaje (%) / Costo ($)")
-        plt.title("Sistema de Control de Calidad")
-
-        # Guardar la imagen en la carpeta static
-        img_path = os.path.join(app.static_folder, "grafica.png")
-        plt.savefig(img_path)
-        plt.close()
-
-        # Enviar la imagen y los valores calculados
+        # Enviar el historial de métricas al frontend
         return jsonify({
-            "image": "/static/grafica.png",
             "tasa_defec": f"{tasa_defec:.2f} %",
             "efic_produc": f"{efic_produc:.2f} %",
             "tiempo_fabric": f"{tiempo_fabric:.2f} min/unidad",
             "desp_material": f"{desp_material:.2f} %",
-            "cost_oper": f"{cost_oper:.2f} $/unidad"
+            "cost_oper": f"{cost_oper:.2f} $/unidad",
+            "historial": {k: list(v) for k, v in historial_metricas.items()}
         })
 
     except Exception as e:
