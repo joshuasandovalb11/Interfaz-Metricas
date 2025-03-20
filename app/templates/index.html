@@ -192,17 +192,15 @@
                     
                     <div class="info-box">
                         <h5>Información:</h5>
-                        <p>Este dashboard monitorea en tiempo real las métricas de calidad. Ajuste los parámetros para simular diferentes escenarios. Actualización automática cada segundo.</p>
+                        <p>Este dashboard permite monitorear en tiempo real las métricas de calidad de una línea de producción de guitarras electricas. 
+                            Ajuste los parámetros para simular diferentes escenarios y observe cómo afectan a los indicadores clave 
+                            de calidad. El sistema actualiza automáticamente los datos cada segundo para facilitar la toma de decisiones.</p>
                     </div>
                     
                     <!-- Sliders en contenedor -->
                     <div class="control-container">
                         <h4>Parámetros de producción:</h4>
                         <form id="metricasForm">
-                            <div class="mb-3">
-                                <label class="form-label">Unidades defectuosas: <span id="valor-defectuosos">0</span></label>
-                                <input type="range" class="form-range" name="productos_defectuosos" min="0" max="10000" value="0" oninput="actualizarValorSlider('defectuosos', this.value)">
-                            </div>
                             <div class="mb-3">
                                 <label class="form-label">Producción total: <span id="valor-totales">0</span></label>
                                 <input type="range" class="form-range" name="productos_totales" min="0" max="10000" value="0" oninput="actualizarValorSlider('totales', this.value)">
@@ -212,16 +210,20 @@
                                 <input type="range" class="form-range" name="productos_buenos" min="0" max="10000" value="0" oninput="actualizarValorSlider('buenos', this.value)">
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">Unidades defectuosas: <span id="valor-defectuosos">0</span></label>
+                                <input type="range" class="form-range" name="productos_defectuosos" min="0" max="10000" value="0" oninput="actualizarValorSlider('defectuosos', this.value)">
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Tiempo de ciclo (min): <span id="valor-tiempo">0</span></label>
                                 <input type="range" class="form-range" name="tiempo_total" min="0" max="10000" value="0" oninput="actualizarValorSlider('tiempo', this.value)">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Material de desecho (Kg): <span id="valor-desperdiciado">0</span></label>
-                                <input type="range" class="form-range" name="material_desperdiciado" min="0" max="10000" value="0" oninput="actualizarValorSlider('desperdiciado', this.value)">
-                            </div>
-                            <div class="mb-3">
                                 <label class="form-label">Material total (Kg): <span id="valor-material-total">0</span></label>
                                 <input type="range" class="form-range" name="material_total" min="0" max="10000" value="0" oninput="actualizarValorSlider('material-total', this.value)">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Material de desecho (Kg): <span id="valor-desperdiciado">0</span></label>
+                                <input type="range" class="form-range" name="material_desperdiciado" min="0" max="10000" value="0" oninput="actualizarValorSlider('desperdiciado', this.value)">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Costos operativos ($): <span id="valor-costos">0</span></label>
