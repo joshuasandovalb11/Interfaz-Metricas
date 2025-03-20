@@ -235,7 +235,6 @@ function actualizarMetricas() {
                     backgroundColor = "rgba(220, 53, 69, 0.1)";
                 }
 
-                // En el archivo metodos.js, encuentra la parte donde se crea la gráfica:
                 charts[nombre] = new Chart(canvas, {
                     type: "line",
                     data: {
@@ -247,7 +246,8 @@ function actualizarMetricas() {
                             backgroundColor: backgroundColor,
                             borderWidth: 2,
                             tension: 0.4,
-                            fill: true
+                            fill: true,
+                            color: "white"
                         }]
                     },
                     options: {
@@ -291,11 +291,13 @@ function actualizarMetricas() {
                                 display: true,
                                 text: metrica.descripcion,
                                 font: {
-                                    size: 12
+                                    size: 12,
+                                    color: "white"
                                 },
                                 padding: {
                                     top: 5,
-                                    bottom: 5
+                                    bottom: 5,
+                                    color: "white"
                                 },
                                 color: "white"  // Añade esta línea
                             },
