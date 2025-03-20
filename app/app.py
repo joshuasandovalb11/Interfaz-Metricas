@@ -13,6 +13,10 @@ historial_metricas = {
     "Costos de operación": deque(maxlen=10)
 }
 
+# Inicializar el historial con ceros para evitar errores
+for key in historial_metricas:
+    historial_metricas[key].append(0)
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -21,20 +25,20 @@ def index():
 def calcular():
     try:
         # Obtener datos de los sliders
-        productos_defectuosos = int(request.form["productos_defectuosos"])
-        productos_totales = int(request.form["productos_totales"])
-        productos_buenos = int(request.form["productos_buenos"])
-        tiempo_total = int(request.form["tiempo_total"])
-        material_desperdiciado = int(request.form["material_desperdiciado"])
-        material_total = int(request.form["material_total"])
-        costos_totales = int(request.form["costos_totales"])
+        productos_defectuosos = int(request.form.get("productos_defectuosos", 0))
+        productos_totales = max(int(request.form.get("productos_totales", 1)), 1)  # Evitar división por cero
+        productos_buenos = int(request.form.get("productos_buenos", 0))
+        tiempo_total = int(request.form.get("tiempo_total", 0))
+        material_desperdiciado = int(request.form.get("material_desperdiciado", 0))
+        material_total = max(int(request.form.get("material_total", 1)), 1)  # Evitar división por cero
+        costos_totales = int(request.form.get("costos_totales", 0))
 
         # Cálculo de métricas
-        tasa_defec = (productos_defectuosos / productos_totales) * 100 if productos_totales > 0 else 0
-        efic_produc = (productos_buenos / productos_totales) * 100 if productos_totales > 0 else 0
-        tiempo_fabric = tiempo_total / productos_totales if productos_totales > 0 else 0
-        desp_material = (material_desperdiciado / material_total) * 100 if material_total > 0 else 0
-        cost_oper = costos_totales / productos_totales if productos_totales > 0 else 0
+        tasa_defec = (productos_defectuosos / productos_totales) * 100
+        efic_produc = (productos_buenos / productos_totales) * 100
+        tiempo_fabric = tiempo_total / productos_totales
+        desp_material = (material_desperdiciado / material_total) * 100
+        cost_oper = costos_totales / productos_totales
 
         # Actualizar el historial de métricas
         historial_metricas["Tasa de defectos"].append(tasa_defec)
@@ -54,7 +58,16 @@ def calcular():
         })
 
     except Exception as e:
-        return jsonify({"error": str(e)})
+        # En caso de error, devolver un historial vacío pero válido
+        return jsonify({
+            "error": str(e),
+            "tasa_defec": "0.00 %",
+            "efic_produc": "0.00 %",
+            "tiempo_fabric": "0.00 min/unidad",
+            "desp_material": "0.00 %",
+            "cost_oper": "0.00 $/unidad",
+            "historial": {k: list(v) for k, v in historial_metricas.items()}
+        })
 
 if __name__ == '__main__':
     app.run(debug=True)
