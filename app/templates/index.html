@@ -29,7 +29,7 @@
             flex-direction: column;
         }
         .header {
-            background-color: #0066cc;
+            /* background-color: #0066cc; */
             color: white;
             padding: 10px 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -201,31 +201,31 @@
                         <form id="metricasForm">
                             <div class="mb-3">
                                 <label class="form-label">Unidades defectuosas: <span id="valor-defectuosos">0</span></label>
-                                <input type="range" class="form-range" name="productos_defectuosos" min="0" max="100" value="0" oninput="actualizarValorSlider('defectuosos', this.value)">
+                                <input type="range" class="form-range" name="productos_defectuosos" min="0" max="10000" value="0" oninput="actualizarValorSlider('defectuosos', this.value)">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Producción total: <span id="valor-totales">0</span></label>
-                                <input type="range" class="form-range" name="productos_totales" min="0" max="100" value="0" oninput="actualizarValorSlider('totales', this.value)">
+                                <input type="range" class="form-range" name="productos_totales" min="0" max="10000" value="0" oninput="actualizarValorSlider('totales', this.value)">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Unidades aprobadas: <span id="valor-buenos">0</span></label>
-                                <input type="range" class="form-range" name="productos_buenos" min="0" max="100" value="0" oninput="actualizarValorSlider('buenos', this.value)">
+                                <input type="range" class="form-range" name="productos_buenos" min="0" max="10000" value="0" oninput="actualizarValorSlider('buenos', this.value)">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Tiempo de ciclo (min): <span id="valor-tiempo">0</span></label>
-                                <input type="range" class="form-range" name="tiempo_total" min="0" max="100" value="0" oninput="actualizarValorSlider('tiempo', this.value)">
+                                <input type="range" class="form-range" name="tiempo_total" min="0" max="10000" value="0" oninput="actualizarValorSlider('tiempo', this.value)">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Material de desecho (Kg): <span id="valor-desperdiciado">0</span></label>
-                                <input type="range" class="form-range" name="material_desperdiciado" min="0" max="100" value="0" oninput="actualizarValorSlider('desperdiciado', this.value)">
+                                <input type="range" class="form-range" name="material_desperdiciado" min="0" max="10000" value="0" oninput="actualizarValorSlider('desperdiciado', this.value)">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Material total (Kg): <span id="valor-material-total">0</span></label>
-                                <input type="range" class="form-range" name="material_total" min="0" max="100" value="0" oninput="actualizarValorSlider('material-total', this.value)">
+                                <input type="range" class="form-range" name="material_total" min="0" max="10000" value="0" oninput="actualizarValorSlider('material-total', this.value)">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Costos operativos ($): <span id="valor-costos">0</span></label>
-                                <input type="range" class="form-range" name="costos_totales" min="0" max="100" value="0" oninput="actualizarValorSlider('costos', this.value)">
+                                <input type="range" class="form-range" name="costos_totales" min="0" max="100000" value="0" oninput="actualizarValorSlider('costos', this.value)">
                             </div>
                         </form>
                     </div>
