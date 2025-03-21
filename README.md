@@ -9,12 +9,12 @@ Asegúrate de tener instalado [Python](https://www.python.org/) en tu sistema.
 1. **Clona el repositorio**
 
    ```sh
-   git clone <URL_DEL_REPOSITORIO>
+   git clone https://github.com/joshuasandovalb11/Interfaz-Metricas.git
 
 2. **Accede a la carpeta del repositorio**
 
    ```sh
-   cd <NOMBRE_DEL_REPOSITORIO>
+   cd Interfaz-Metricas
 
 3. **Accede a la carpeta del repositorio**
 
