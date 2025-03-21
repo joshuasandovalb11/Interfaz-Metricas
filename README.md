@@ -28,5 +28,5 @@ Asegúrate de tener instalado flask en tu sistema.
    python app.py
 
 5. **Accede a la dirección web donde se está alojando la página**
-Flask generalmente ejecuta la aplicación en http://127.0.0.1:5000/.
-Abre tu navegador y visita esta URL para ver la aplicación en funcionamiento.
+#### Flask generalmente ejecuta la aplicación en http://127.0.0.1:5000/.
+#### Abre tu navegador y visita esta URL para ver la aplicación en funcionamiento.
