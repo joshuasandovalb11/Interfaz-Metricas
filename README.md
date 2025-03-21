@@ -2,8 +2,8 @@
 
 ## Requisitos previos
 
-Asegúrate de tener instalado [Python](https://www.python.org/) en tu sistema.
-Asegúrate de tener instalado flask en tu sistema.
+#### Asegúrate de tener instalado [Python](https://www.python.org/) en tu sistema.
+#### Asegúrate de tener instalado flask en tu sistema.
 
 ## Pasos para correr el programa
 
